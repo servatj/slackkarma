@@ -2,25 +2,34 @@
   "name": "slackkarma",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development babel-node src/index.js",
+    "prod": "NODE_ENV=production node dist/index.js",
+    "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
+    "lint": "eslint src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "body-parser": "^1.18.3",
-    "config": "^1.30.0",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.1.1",
+    "config": "^1.28.1",
     "csv-write-stream": "^2.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "express": "^4.16.3",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
     "mkdirp": "^0.5.1",
     "morgan": "^1.9.0",
-    "tracer": "^0.8.15"
+    "popper.js": "^1.14.3",
+    "request": "^2.83.0",
+    "tracer": "^0.8.11"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }
