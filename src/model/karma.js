@@ -1,5 +1,4 @@
-const mysql = require('mysql');
-const config = require('config');
+const path = require('path');
 
 const con = mysql.createConnection(config.get('mysql'));
 
@@ -11,7 +10,6 @@ const listTop = () => {
 
 }
 
-
 const start = () => {
 console.log("pre ")    ;
   con.connect(function(err) {
@@ -21,12 +19,10 @@ console.log("pre ")    ;
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log("Table created");
-    });
+    }
   });
 }
 
 module.exports = {
-  saveKarma,
-  listTop,
-  start
+  createTable()
 };

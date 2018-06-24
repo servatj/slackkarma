@@ -1,8 +1,10 @@
-const Systemic = require('../..')
+const Systemic = require('systemic')
 const Config = require('./components/config')
 const Logger = require('./components/logger')
-const bot = require('./src/bot')
+const mysqlSys = require('./components/mysql')
+//const bot = require('./src/bot')
 
 module.exports = () => Systemic()
     .add('config', Config(), { scoped: true })
     .add('logger', Logger()).dependsOn('config')
+    .add('mysqlSys', mysqlSys()).dependsOn('config')
