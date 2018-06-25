@@ -8,7 +8,7 @@ async function start() {
   const { config, logger, mysqlSys } = await system.start()
 
   // create Schema 
-  // createStore().createDatabase(mysqlSys, 'karma')
+  createStore().createDatabase(mysqlSys, 'karma')
   // create Database      
   // wait for message
 

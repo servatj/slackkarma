@@ -14,7 +14,7 @@ module.exports = () => {
 
 
   async function stop() {
-    return mysqlSys.close();
+    return mysqlSys.end();
   }
 
   return {
