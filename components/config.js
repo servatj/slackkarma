@@ -8,8 +8,7 @@ module.exports = function(options) {
             mysqlSys: {
                 host     : 'localhost',
                 user     : 'admin',
-                password : 'password',
-                database : 'event_aggregates'
+                password : 'password'
             },
             slack: {
 
