@@ -4,15 +4,9 @@ const util = require('util');
 module.exports = (options) => {
   let mysqlSys;
   async function start({ logger, config }) {
-     console.log('config', config);
-      mysqlSys = mysql.createConnection({
-           host     : 'localhost',
-           user     : 'admin',
-           password : 'password'
-      });
+      mysqlSys = mysql.createConnection(config);
       return mysqlSys;    
   }
-
 
   async function stop() {
     return mysqlSys.end();
