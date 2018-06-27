@@ -9,8 +9,8 @@ var prompt = require('prompt-sync')();
 
 async cons setup = () => {
     // perform setup tasks
-    let token =
-    let password =  
+    let token = prompt('please paste the token for your bot')
+    let password = prompt('please enter the db password')
 }
 
 module.exports = {
