@@ -5,6 +5,7 @@ module.exports = (options) => {
   let mysqlSys;
   async function start({ logger, config }) {
       mysqlSys = mysql.createConnection(config);
+      console.log("Connection  created")
       return mysqlSys;    
   }
 
