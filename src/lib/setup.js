@@ -9,7 +9,8 @@ var prompt = require('prompt-sync')();
 
 async cons setup = () => {
     // perform setup tasks
-    
+    let token =
+    let password =  
 }
 
 module.exports = {
