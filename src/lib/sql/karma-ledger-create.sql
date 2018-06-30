@@ -4,5 +4,5 @@ CREATE TABLE karma_ledger (
    karma int(11) NOT NULL,
    channel_id int(11) NOT NULL,
    timestamp timestamp NOT NULL
-  PRIMARY KEY (user_id, job_id ,date)
+  PRIMARY KEY (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

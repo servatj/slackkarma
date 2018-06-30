@@ -10,8 +10,12 @@ module.exports = function(options) {
                 user     : 'admin',
                 password : 'password'
             },
-            slack: {
-
+            karmabot: {
+                fileUploadUrl: 'https://slack.com/api/files.upload',
+                slackkarma: {
+                    fileUploadChannel: '#Slack',
+                    botToken: 'xoxb-330868138784-369391388770-EQVjLvAi09G6xv2ecVUBUK6g'
+                }
             }
         }
     }

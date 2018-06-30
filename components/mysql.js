@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const util = require('util');
 
-module.exports = (options) => {
+module.exports = () => {
   let mysqlSys;
   async function start({ logger, config }) {
       mysqlSys = mysql.createConnection(config);
