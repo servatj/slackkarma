@@ -10,7 +10,7 @@ const getKarma = (user) => {
    return 0
 }
 
-const getUserPostMessage = (message, userName, incDec, rtm, web) => {
+const getUserPostMessage = (message, userName, incDec, rtm, web ) => {
  web.users.info({ user: userName.replace('@','') })
   .then((response) => {
   // Success!

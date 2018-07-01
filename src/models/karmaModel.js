@@ -1,12 +1,10 @@
 const path = require('path');
 
-const con = mysql.createConnection(config.get('mysql'));
-
-const saveKarma = () => {
-
+const saveKarma = (msyql) => {
+  
 };
 
-const listTop = () => {
+const listTop = (mysql) => {
 
 }
 

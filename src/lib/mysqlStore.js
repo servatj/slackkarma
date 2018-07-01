@@ -7,13 +7,12 @@ module.exports = () => {
       })
   } 
 
-  const createTable = (mysql, tbMame, schema) => {
-    mysql.query(`CREATE TABL IF NOT EXISTS ${tbName};`, (err, content) => {
+  const createTable = (mysql, ddl, tbname) => {
+    mysql.query(ddl, (err, content) => {
         if (err) throw err
-        console.log(`New Database Created`)
+        console.log(`New table ${tbname} Created`)
     })
   } 
-
 
   return Object.freeze({
     createDatabase,

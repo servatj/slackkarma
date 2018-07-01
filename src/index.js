@@ -1,4 +1,5 @@
 const System = require('../system')
+const setup = require('./lib/setup')
 
 
 const events = { SIGTERM: 0, SIGINT: 0, unhandledRejection: 1, error: 1 }
@@ -7,7 +8,7 @@ async function start() {
   const system = System()
   const { config, logger, mysqlSys } = await system.start()
 
-  // setup
+  setup.start(mysqlSys);
   
   // events listeners 
   
