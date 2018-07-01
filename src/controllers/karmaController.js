@@ -1,3 +1,5 @@
+
+let usersKarma = [];
 const removeUser = (user) => usersKarma.filter((row) => row.user != user)
 
 const getKarma = (user) => {
@@ -8,8 +10,8 @@ const getKarma = (user) => {
    return 0
 }
 
-const getUserPostMessage = (message, userName, incDec) => {
-  web.users.info({ user: userName.replace('@','') })
+const getUserPostMessage = (message, userName, incDec, rtm, web) => {
+ web.users.info({ user: userName.replace('@','') })
   .then((response) => {
   // Success!
     rtm.sendMessage(`@${response.user.profile.display_name}` + ` karma has ${incDec} to ` + getKarma(userName), message.channel);
@@ -21,21 +23,22 @@ const getUserPostMessage = (message, userName, incDec) => {
   });
 }
 
-const incKarma = (userList) => {
+const incKarma = (userList, message, rtm, web) => {
+    console.log(userList)
     userList.map((userName) => {
         addKarma = { user: userName , karma: (getKarma(userName) || 0) + 1 };
         usersKarma = removeUser(userName);
         usersKarma.push(addKarma);
-        getUserPostMessage(message, userName, 'increased');
+        getUserPostMessage(message, userName, 'increased', rtm, web);
     });
 }
 
-const decKarma = (userList) => {
+const decKarma = (userList, message, rtm, web) => {
     userList.map((userName) => {
         addKarma = { user: userName , karma: (getKarma(userName) || 0) - 1 };
         usersKarma = removeUser(userName);
         usersKarma.push(addKarma);
-        getUserPostMessage(message, userName, 'decreased');
+        getUserPostMessage(message, userName, 'decreased', rtm, web);
     });
 }
 
