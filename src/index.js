@@ -6,9 +6,9 @@ const events = { SIGTERM: 0, SIGINT: 0, unhandledRejection: 1, error: 1 }
 
 async function start() {
   const system = System()
-  const { config, logger, mysqlSys } = await system.start()
+  const { config, logger, mysqlSys, karmabot } = await system.start()
 
-  setup.start(mysqlSys);
+  setup.start(mysqlSys)
   
   // events listeners 
   
