@@ -2,23 +2,12 @@
 const karmaModel = require('../models/karmaModel')
 
 module.exports = () => {
-
-    let usersKarma = [];
-    const removeUser = (user) => usersKarma.filter((row) => row.user != user)
     
-    const getKarma = (user) => {
-       let karma = usersKarma.filter((row) => row.user === user) || [];
-       if (karma.length >= 1) {
-         return usersKarma.filter((row) => row.user === user)[0].karma
-       }
-       return 0
-    }
-    
-    const getUserPostMessage = (message, userName, incDec, rtm, web ) => {
+    const getUserPostMessage = (message, userName, incDec, rtm, web, karma ) => {
      web.users.info({ user: userName.replace('@','') })
       .then((response) => {
       // Success!
-        rtm.sendMessage(`@${response.user.profile.display_name}` + ` karma has ${incDec} to ` + getKarma(userName), message.channel);
+        rtm.sendMessage(`@${response.user.profile.display_name}` + ` karma has ${incDec} to ` + karma, message.channel);
       })
       .catch((error) => {
       // Error :/
@@ -28,23 +17,16 @@ module.exports = () => {
     }
     
     const incKarma = (userList, message, rtm, web, mysql) => {
-        console.log(userList)
         userList.map((userName) => {
-            var addKarma = { user: userName , karma: (getKarma(userName) || 0) + 1 };
-            usersKarma = removeUser(userName);
-            usersKarma.push(addKarma);
-            karmaModel.saveKarma(mysql, 1, userName, userName, message.channel)
-            getUserPostMessage(message, userName, 'increased', rtm, web);
+            karmaModel.saveKarma(mysql, 1, userName, userName, message.channel, message, rtm, web)
+           // getUserPostMessage(message, userName, 'increased', rtm, web, karma);
         });
     }
     
     const decKarma = (userList, message, rtm, web, mysql) => {
         userList.map((userName) => {
-            var addKarma = { user: userName , karma: (getKarma(userName) || 0) - 1 };
-            usersKarma = removeUser(userName);
-            usersKarma.push(addKarma);
-            karmaModel.saveKarma(mysql, -1, userName, userName, message.channel)
-            getUserPostMessage(message, userName, 'decreased', rtm, web);
+            karmaModel.saveKarma(mysql, -1, userName, userName, message.channel, message, rtm, web)
+            // getUserPostMessage(message, userName, 'decreased', rtm, web, karma);
         });
     }
 

@@ -14,7 +14,7 @@ module.exports = function(options) {
                 fileUploadUrl: 'https://slack.com/api/files.upload',
                 slackkarma: {
                     fileUploadChannel: '#Slack',
-                    botToken: 'empty'
+                    botToken: 'xoxb-84169475937-390488591344-wUkBzInOqjGGWGa0TiIBL4F0'
                 }
             }
         }
