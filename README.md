@@ -1,5 +1,4 @@
-# slackkarma
-
+# Karma Bot For Slack
 
 ## Karma Bot integrated with slack 
 
