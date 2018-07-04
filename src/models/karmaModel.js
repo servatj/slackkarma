@@ -2,7 +2,9 @@ const path = require('path')
 const moment = require('moment')
 
 const getUserPostMessage = (message, userName, incDec, rtm, web, karma ) => {
-  web.users.info({ user: userName.replace('@','') })
+  console.log(userName)
+  web.users.info({ user: userName[0].replace('@','') })
+
    .then((response) => {
    // Success!
      rtm.sendMessage(`@${response.user.profile.display_name}` + ` karma has ${incDec} to ` + karma, message.channel);
@@ -29,6 +31,7 @@ const saveKarma = (mysql, receivedKarma, userId, userName, channelId, message, r
       }
       mysql.query(`INSERT INTO karma.karma_ledger SET ?`, userKarma, (err, content) => {
         if (err) console.log('error in model karma ' + err)
+        console.log("karma saver")
         getUserPostMessage(message, userName, 'increased', rtm, web, userKarma.karma)
       })
     })

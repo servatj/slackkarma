@@ -2,8 +2,9 @@
 const karmaModel = require('../models/karmaModel')
 
 module.exports = () => {
-    
+
     const getUserPostMessage = (message, userName, incDec, rtm, web, karma ) => {
+     console.log("username ", userName)
      web.users.info({ user: userName.replace('@','') })
       .then((response) => {
       // Success!
@@ -15,19 +16,16 @@ module.exports = () => {
         console.log(error);
       });
     }
-    
-    const incKarma = (userList, message, rtm, web, mysql) => {
-        userList.map((userName) => {
-            karmaModel.saveKarma(mysql, 1, userName, userName, message.channel, message, rtm, web)
+
+    const incKarma = (userName, message, rtm, web, mysql, karma) => {
+            karmaModel.saveKarma(mysql, karma, userName, userName, message.channel, message, rtm, web)
            // getUserPostMessage(message, userName, 'increased', rtm, web, karma);
-        });
     }
-    
-    const decKarma = (userList, message, rtm, web, mysql) => {
-        userList.map((userName) => {
-            karmaModel.saveKarma(mysql, -1, userName, userName, message.channel, message, rtm, web)
+
+    const decKarma = (userName, message, rtm, web, mysql, karma) => {
+            karma = karma * -1
+            karmaModel.saveKarma(mysql, karma, userName, userName, message.channel, message, rtm, web)
             // getUserPostMessage(message, userName, 'decreased', rtm, web, karma);
-        });
     }
 
    return {

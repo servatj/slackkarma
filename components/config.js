@@ -8,13 +8,13 @@ module.exports = function(options) {
             mysqlSys: {
                 host     : 'localhost',
                 user     : 'admin',
-                password : 'admin'
+                password : 'password'
             },
             karmabot: {
                 fileUploadUrl: 'https://slack.com/api/files.upload',
                 slackkarma: {
                     fileUploadChannel: '#Slack',
-                    botToken: 'empty'
+                    botToken: 'xoxb-84169475937-393952027590-IgPcAUVjwSoUAPcnDSQF14eb'
                 }
             }
         }
