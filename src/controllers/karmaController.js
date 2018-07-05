@@ -4,7 +4,7 @@ const karmaModel = require('../models/karmaModel')
 module.exports = () => {
 
     const getUserPostMessage = (message, userName, incDec, rtm, web, karma ) => {
-     console.log("username ", userName)
+     console.log("username ", user)
      web.users.info({ user: userName.replace('@','') })
       .then((response) => {
       // Success!

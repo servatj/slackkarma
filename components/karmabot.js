@@ -14,18 +14,20 @@ module.exports = (controller) => {
     rtm.on('message', function handleRtmMessage(message) {
       try {
         console.log(message.text)
-        let usersKarma = R.match(/<@(\w+)>:?\s*(-{2,6}|\+{2,6})/g, message.text)
+        let usersKarma = R.match(/<@(\w+)>:?\s*(-{2,7}|\+{2,7})/g, message.text)
         if (usersKarma.length > 0) {
           usersKarma.map((user) => {
-            console.log(user.split(/\+/g).length)
             let userId = user.match(/@\w+/g)
             let signsArrPlus  = user.split(/\+/g).length || [];
             let signsArrMinus = user.split(/\-/g).length || [];
+
             if (signsArrPlus >= 2 ) {
+              checkKarma(signsArrPlus, 'increase')
               karma = signsArrPlus - 2
               controller.incKarma(userId, message, rtm, web, mysqlSys, karma)
             }
-            if (signsArrMinus >= 2 && signsArrPlus.lengt == 0) {
+            if (signsArrMinus >= 2 && signsArrPlus == 1) {
+              checkKarma(signsArrPlus, 'decrease')
               karma = signsArrMinus - 2
               controller.decKarma(userId, message, rtm, web, mysqlSys, karma)
             }
@@ -37,6 +39,14 @@ module.exports = (controller) => {
     });
 
     rtm.start();
+  }
+
+  const postMessage = (message, rtm, channel) => {
+    rtm.sendMessage(message, channel);
+  }
+
+  const checkKarma = (value, suffix) => {
+    if (value > 6) postMessage(`The maximum level of karma change you can ${suffix} is 5 points`)
   }
 
   return {
