@@ -5,8 +5,16 @@ module.exports = () => {
   let mysqlSys;
   async function start({ logger, config }) {
       mysqlSys = mysql.createConnection(config);
-      console.log("Connection  created")
-      return mysqlSys;    
+      mysqlSys.connect(function(err) {
+        if (err) {
+          console.error('error connecting: ' + err.stack);
+          return;
+        }
+
+        console.log('connected as id ' + mysqlSys.threadId);
+      });
+
+      return mysqlSys;
   }
 
   async function stop() {
@@ -16,5 +24,5 @@ module.exports = () => {
   return {
     start: start,
     stop: stop,
-  }  
+  }
 }
