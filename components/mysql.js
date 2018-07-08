@@ -11,7 +11,7 @@ module.exports = () => {
           return;
         }
 
-        console.log('connected as id ' + mysqlSys.threadId);
+        logger.debug('connected as id ' + mysqlSys.threadId);
       });
 
       return mysqlSys;

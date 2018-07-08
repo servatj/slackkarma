@@ -13,8 +13,7 @@ module.exports = (controller) => {
 
     rtm.on('message', function handleRtmMessage(message) {
       try {
-        console.log(message.text)
-        let usersKarma = R.match(/<@(\w+)>:?\s*(-{2,7}|\+{2,7})/g, message.text)
+        let usersKarma = R.match(/<@(\w+)>:?\s*(\+(\+)+)/g, message.text)
         if (usersKarma.length > 0) {
           usersKarma.map((user) => {
             let userId = user.match(/@\w+/g)
