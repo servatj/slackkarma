@@ -13,18 +13,23 @@ module.exports = (controller) => {
 
     rtm.on('message', function handleRtmMessage(message) {
       try {
-        let usersKarmaIncrease = R.match(/(\<@\w+>)\s(\+)+/g, message.text)
-    // let usersKarmaDecrease = R.match(/(\<@\w+>)\s(\-)+/g, message.text)
-
+        let usersKarmaIncrease = R.match(/(<@\w+>)\s(\+)+/g, message.text) || []
           usersKarmaIncrease.map((user) => {
             let userId = user.match(/@\w+/g)
+            console.log(userId)
               karma = (user.match(/\+/g)).length - 1
               controller.incKarma(userId, message, rtm, web, mysqlSys, karma)
           })
 
+        let usersKarmaDecrease = R.match(/(<@\w+>)\s(\-)+/g, message.text) || []
+          usersKarmaDecrease.map((user) => {
+            let userId = user.match(/@\w+/g)
+              karma = (user.match(/\-/g)).length - 1
+              controller.decKarma(userId, message, rtm, web, mysqlSys, karma)
+          })
       } catch(err) {
         console.log("console", err);
-       // logger.log(err)
+         logger.info(err)
       }
     });
 
