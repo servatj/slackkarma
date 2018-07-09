@@ -7,6 +7,7 @@
     "prod": "NODE_ENV=production node dist/index.js",
     "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
     "lint": "eslint src",
+    "precommit": "./node_modules/.bin/eslint .",
     "test": "mocha"
   },
   "author": "",
@@ -37,9 +38,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.11.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-mocha": "^5.1.0",
+    "eslint-plugin-react": "^7.7.0",
     "mocha": "^5.2.0"
   },
   "repository": {
