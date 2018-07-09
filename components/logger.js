@@ -4,7 +4,7 @@ module.exports = function(options) {
 
    async function start({ config }) {
         const logger = winston.createLogger({
-            transports: [
+          transports: [
               new winston.transports.File(config.file),
               new winston.transports.Console(config.console)
             ],
@@ -21,6 +21,6 @@ module.exports = function(options) {
     }
 
     return {
-        start: start
+       start
     }
 }
