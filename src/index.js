@@ -25,7 +25,7 @@ async function start() {
   Object.keys(events).forEach(name => {
     process.on(name, async () => {
       await system.stop()
-      console.log('System has stopped')
+      logger.log('System has stopped')
       process.exit(events[name])
     })
   })

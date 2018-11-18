@@ -4,17 +4,15 @@ const util = require('util');
 module.exports = () => {
   let mysqlSys;
   async function start({ logger, config }) {
-      mysqlSys = mysql.createConnection(config);
-      mysqlSys.connect(function(err) {
-        if (err) {
-          console.error('error connecting: ' + err.stack);
-          return;
-        }
+    mysqlSys = mysql.createConnection(config);
+    mysqlSys.connect((err) => {
+      if (err) {
+        throw new Error('Error connecting ', err);
+      }
+      logger.debug('connected as id ' + mysqlSys.threadId);
+    });
 
-        logger.debug('connected as id ' + mysqlSys.threadId);
-      });
-
-      return mysqlSys;
+    return mysqlSys;
   }
 
   async function stop() {
