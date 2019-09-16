@@ -1,6 +1,6 @@
 const getCommand = ({ text, user }) => {
 
-  console.log('user ? ', text.match(/(<@\w+>)\s*\+(\+)+/g))
+  console.log('user ? ', text , text.match(/(<@\w+>)\s*\+(\+)+/g))
   const parseUser = text
 		.replace(/^<@/, '')
     .replace(/>/, '')

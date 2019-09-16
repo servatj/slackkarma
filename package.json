@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
     "lint": "eslint src",
     "precommit": "./node_modules/.bin/eslint .",
     "test": "jest"
@@ -24,6 +25,7 @@
   "description": "",
   "devDependencies": {
     "eslint": "^6.4.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.2"
   }
 }
