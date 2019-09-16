@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "NODE_ENV=development node src/index.js",
-    "prod": "NODE_ENV=production node dist/index.js",
-    "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
+    "start": "NODE_ENV=development node src/index.js",
     "lint": "eslint src",
     "precommit": "./node_modules/.bin/eslint .",
     "test": "jest"
@@ -23,6 +21,7 @@
   "homepage": "https://github.com/servatj/slackkarma#readme",
   "description": "",
   "devDependencies": {
-    "eslint": "^6.4.0"
+    "eslint": "^6.4.0",
+    "jest": "^24.9.0"
   }
 }
