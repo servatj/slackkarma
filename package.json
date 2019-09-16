@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=development node src/index.js",
+    "start": "NODE_ENV=development node index.js",
     "lint": "eslint src",
     "precommit": "./node_modules/.bin/eslint .",
     "test": "jest"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@slack/rtm-api": "^5.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/servatj/slackkarma.git"
