@@ -1,7 +1,7 @@
 const rtmClient = require('./components/rtmClient');
 
 const bootstrapBot = () => {
-  console.log("Hola como estas");
+  console.log("Karma Bot Started");
   rtmClient.start();
 }
 
