@@ -1,17 +1,20 @@
-const getCommand = ({ text, user }) => {
-  console.log(text.match(/(<@\w+>)/g).length)
-  console.log('user ? ', text , text.match(/(<@\w+>)\s*\+(\+)+/g))
-  const parseUser = text
-		.replace(/^<@/, '')
-    .replace(/>/, '')
-    .replace(/\+|\s/g, '');
+const { extractUserIncreaser, extractUserDecreaser } = require('../helpers/users')
 
-  console.log(parseUser)
-  return {
-    numberOfUsers: () => text.match(/(<@\w+>)/g).length
-  }
+const getUsersCommands = (message) => {
+  const increasers = message.match(/(<@\w+>)\s*\+(\+)+/g)
+  const decreasers = message.match(/(<@\w+>)\s*\-(\-)+/g)
+  const usersIncrease = increasers.map(extractUserIncreaser)
+    .map( user => ({ command: "increase", user }))
+  const usersDecrease = decreasers.map(extractUserDecreaser)
+    .map( user => ({ command: "decrease", user }))
+  return [...usersIncrease, ...usersDecrease]
+}
+
+const handleMessage = ({ text, user }) => {
+  const usersCommands = getUsersCommands(text)
+  return usersCommands
 }
 
 module.exports = {
-    getCommand 
+    handleMessage 
 }
