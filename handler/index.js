@@ -16,5 +16,5 @@ const handleMessage = ({ text, user }) => {
 }
 
 module.exports = {
-    handleMessage 
+  handleMessage 
 }
