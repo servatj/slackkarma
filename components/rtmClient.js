@@ -6,7 +6,7 @@ const handler = require('../handler')
 // Attach listeners to events by type. See: https://api.slack.com/events/message
 rtm.on('message', (event) => {
   const ev = event.message || event
-  handler.getCommand(ev)
+  handler.handleMessage(ev)
 });
 
 const start = async () => {
