@@ -1,12 +1,12 @@
-const { extractUserIncreaser, extractUserDecreaser } = require('../helpers/users')
+const { extractUser, getKarmaAmount } = require('../helpers/users')
 
 const getUsersCommands = (message) => {
   const increasers = message.match(/(<@\w+>)\s*\+(\+)+/g) || []
   const decreasers = message.match(/(<@\w+>)\s*\-(\-)+/g) || []
-  const usersIncrease = increasers.map(extractUserIncreaser)
-    .map( user => ({ command: "increase", user }))
-  const usersDecrease = decreasers.map(extractUserDecreaser)
-    .map( user => ({ command: "decrease", user }))
+  const usersIncrease = increasers.map(extractUser)
+    .map( user => ({ command: "increase", user: user.replace(/\+|\s/g, ''), amount: getKarmaAmount(user)}))
+  const usersDecrease = decreasers.map(extractUser)
+    .map( user => ({ command: "decrease", user: user.replace(/-|\s/g, ''), amount: getKarmaAmount(user)}))
   return [...usersIncrease, ...usersDecrease]
 }
 

@@ -1,14 +1,12 @@
-const extractUserDecreaser = (user) => user
+const extractUser = (user) => user
 	.replace(/^<@/, '')
-	.replace(/>/, '')
-  .replace(/-|\s/g, '');
+  .replace(/>/, '')
 
-const extractUserIncreaser = (user) => user
-	.replace(/^<@/, '')
-	.replace(/>/, '')
-	.replace(/\+|\s/g, '');
+const getKarmaAmount = (user) => {
+  return user.match(/[-\+]/g).length - 1;
+}
 
 module.exports = {
-  extractUserIncreaser,
-  extractUserDecreaser
+  extractUser,
+  getKarmaAmount
 }

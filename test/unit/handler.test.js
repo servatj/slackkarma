@@ -33,15 +33,18 @@ describe('Handler', () => {
 
     const expected = [{
       command: 'increase',
-      user: 'U9SGW3MN3'
+      user: 'U9SGW3MN3',
+      amount: 4
     },
     {
       command: 'increase',
-      user: 'U9SGW3MN3'
+      user: 'U9SGW3MN3',
+      amount: 3
     },
     {
       command: 'decrease',
-      user: 'U9SGW3MN3'
+      user: 'U9SGW3MN3',
+      amount: 2
     }]
     expect(handler.handleMessage(event)).toEqual(expected)
   })
