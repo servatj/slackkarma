@@ -6,7 +6,7 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon index.js",
     "lint": "eslint src",
-    "precommit": "./node_modules/.bin/eslint .",
+    "precommit": "node_modules/eslint/bin/eslint.js .",
     "test": "jest"
   },
   "author": "",
