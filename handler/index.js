@@ -12,7 +12,6 @@ const getUsersCommands = (message, channel) => {
 
 const handleMessage = ({ text, user }, channel) => {
   const usersCommands = getUsersCommands(text, channel)
-  console.log(usersCommands)
   return usersCommands
 }
 

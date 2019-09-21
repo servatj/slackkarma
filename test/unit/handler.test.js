@@ -11,11 +11,14 @@ describe('Handler', () => {
       edited: { user: 'U9SGW3MN3', ts: '1568677923.000000' },
       ts: '1568677913.006900',
       user_team: 'T9QRJ42P2',
-      source_team: 'T9QRJ42P2'
+      source_team: 'T9QRJ42P2',
     }
+    const channel = '100'
+
 
     const expected = []
-    expect(handler.handleMessage(event)).toEqual(expected)
+    expect(handler.handleMessage(event, channel)).toEqual(expected)
+    expect(handler.handleMessage(event, channel).length).toEqual(0)
   })
 
   it('should return an array of commands', ( ) => {
@@ -30,22 +33,27 @@ describe('Handler', () => {
       user_team: 'T9QRJ42P2',
       source_team: 'T9QRJ42P2'
     }
+    const channel = 100;
 
     const expected = [{
       command: 'increase',
       user: 'U9SGW3MN3',
-      amount: 4
+      amount: 4,
+      channel: 100
     },
     {
       command: 'increase',
       user: 'U9SGW3MN3',
-      amount: 3
+      amount: 3,
+      channel: 100
     },
     {
       command: 'decrease',
       user: 'U9SGW3MN3',
-      amount: 2
+      amount: 2,
+      channel: 100
     }]
-    expect(handler.handleMessage(event)).toEqual(expected)
+    expect(handler.handleMessage(event, channel)).toEqual(expected)
+    expect(handler.handleMessage(event, channel).length).toEqual(3)
   })
 })
