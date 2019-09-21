@@ -1,10 +1,29 @@
+const axios = require('axios')
 const userStore = require('../models/user')
 
-const run = (commands) => {
-  commands.forEach(({user, amount, command }) => {
-    const currentAmount = userStore.getStore()[user] ? userStore.getStore()[user] : 0
-    const newAmount = command === 'increase' ? currentAmount + amount : currentAmount - amount
-    userStore.updateUser({[user]: newAmount });
+const SLACK_USER_INFO_URL = 'https://slack.com/api/users.info';
+
+const getUserName = async (userParam) => {
+  try {
+    const resp = await axios.get(`${SLACK_USER_INFO_URL}?token=${process.env.SLACK_BOT_TOKEN}&user=${userParam}`)
+    console.log(resp.data.user.name)
+    return resp.data.user.name
+  } catch(err) {
+    console.log('err', console.log(err))
+  }
+}
+
+const run = (commands, sendMessage) => {
+  commands.forEach( async ({user, amount, command, channel }) => {
+    try {
+      const currentAmount = userStore.getStore()[user] ? userStore.getStore()[user] : 0
+      const newAmount = command === 'increase' ? currentAmount + amount : currentAmount - amount
+      userStore.updateUser({[user]: newAmount });
+      const userName = await getUserName(user);
+      sendMessage(`${userName}'s karma has increased to ${newAmount}`, channel)
+    } catch(err) {
+      console.log('Error getting ', err)
+    }
   })
 }
 
