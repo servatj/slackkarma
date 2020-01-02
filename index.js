@@ -1,3 +1,4 @@
+require('dotenv').config();
 const rtmClient = require('./components/rtmClient');
 
 const bootstrapBot = () => {

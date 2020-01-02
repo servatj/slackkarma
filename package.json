@@ -25,6 +25,7 @@
   "homepage": "https://github.com/servatj/slackkarma#readme",
   "description": "",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "jest": "^24.9.0",
